@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Generator Embedding Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        .example-container {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        
+        .button-container {
+            margin: 20px 0;
+        }
+        
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        #generator-container {
+            margin-top: 30px;
+            min-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Malay Lady Prompt Generator - Embedding Example</h1>
+    
+    <p>This page demonstrates how to embed the Malay Lady Prompt Generator into your website using the embedding script.</p>
+    
+    <div class="example-container">
+        <h2>Basic Embedding</h2>
+        
+        <p>Include the embedding script in your HTML:</p>
+        
+        <div class="code-block">
+            &lt;script src="path-to-generator/embed.js"&gt;&lt;/script&gt;
+        </div>
+        
+        <p>Create a container element and call the embedding function:</p>
+        
+        <div class="code-block">
+            &lt;div id="generator-container"&gt;&lt;/div&gt;<br><br>
+            &lt;script&gt;<br>
+            &nbsp;&nbsp;// Basic embedding with default options<br>
+            &nbsp;&nbsp;embedPromptGenerator('#generator-container');<br>
+            &lt;/script&gt;
+        </div>
+    </div>
+    
+    <div class="example-container">
+        <h2>Customized Embedding</h2>
+        
+        <p>You can customize the embedding with various options:</p>
+        
+        <div class="code-block">
+            &lt;script&gt;<br>
+            &nbsp;&nbsp;// Customized embedding<br>
+            &nbsp;&nbsp;embedPromptGenerator('#generator-container', {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;width: '100%',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;height: '700px',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;theme: 'dark', // 'light', 'dark', or 'auto'<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;showVisitorInfo: false,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;showFooter: true,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;borderRadius: '15px',<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;boxShadow: '0 5px 15px rgba(0,0,0,0.2)'<br>
+            &nbsp;&nbsp;});<br>
+            &lt;/script&gt;
+        </div>
+        
+        <div class="button-container">
+            <button onclick="embedWithDefaultOptions()">Embed with Default Options</button>
+            <button onclick="embedWithDarkTheme()">Embed with Dark Theme</button>
+            <button onclick="embedWithoutVisitorInfo()">Embed without Visitor Info</button>
+            <button onclick="embedCustomized()">Embed Fully Customized</button>
+        </div>
+    </div>
+    
+    <div id="generator-container">
+        <!-- The generator will be embedded here -->
+        <p style="text-align: center; color: #666;">Click one of the buttons above to embed the generator</p>
+    </div>
+    
+    <!-- Include the embedding script -->
+    <script src="embed.js"></script>
+    
+    <script>
+        // Embedding functions for the example buttons
+        function embedWithDefaultOptions() {
+            embedPromptGenerator('#generator-container');
+        }
+        
+        function embedWithDarkTheme() {
+            embedPromptGenerator('#generator-container', {
+                theme: 'dark'
+            });
+        }
+        
+        function embedWithoutVisitorInfo() {
+            embedPromptGenerator('#generator-container', {
+                showVisitorInfo: false
+            });
+        }
+        
+        function embedCustomized() {
+            embedPromptGenerator('#generator-container', {
+                height: '700px',
+                theme: 'dark',
+                showVisitorInfo: true,
+                showFooter: true,
+                borderRadius: '15px',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
+            });
+        }
+    </script>
+</body>
+</html> 

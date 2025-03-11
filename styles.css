@@ -299,6 +299,49 @@ h2 {
     50% { border-color: var(--heading-color) }
 }
 
+/* Visitor Info */
+.visitor-info {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+    background-color: var(--form-bg);
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visitor-info-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.visitor-info-item {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: var(--container-bg);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color 0.3s ease;
+}
+
+.info-label {
+    font-weight: bold;
+    color: var(--heading-color);
+    margin-right: 5px;
+    transition: color 0.3s ease;
+}
+
+.info-value {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .container {
@@ -317,5 +360,15 @@ h2 {
     .typewriter-text {
         font-size: 0.9rem;
         letter-spacing: 0.1em;
+    }
+    
+    .visitor-info-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .visitor-info {
+        font-size: 0.75rem;
+        padding: 10px;
     }
 } 

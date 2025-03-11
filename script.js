@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('themeToggle');
     const copyrightText = document.getElementById('copyrightText');
     
+    // Visitor info elements
+    const ipAddressElement = document.getElementById('ipAddress');
+    const locationElement = document.getElementById('location');
+    const browserElement = document.getElementById('browser');
+    const osElement = document.getElementById('os');
+    const currentTimeElement = document.getElementById('currentTime');
+    
     // Default negative prompt as specified by the user
     const defaultNegativePrompt = "unrealistic proportions, cartoon, anime, illustration, CGI, Unreal, Airbrushed, Digital, fused fingers";
     
@@ -121,6 +128,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typewriter effect for copyright text
     initTypewriter();
     
+    // Initialize visitor information
+    initVisitorInfo();
+    
+    // Update clock every second
+    setInterval(updateClock, 1000);
+    
+    // Get embedding parameters from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const isEmbedded = urlParams.has('theme') || urlParams.has('hideVisitorInfo') || urlParams.has('hideFooter');
+    
+    // Handle embedding options
+    if (isEmbedded) {
+        handleEmbeddingOptions(urlParams);
+    }
+    
     /**
      * Initializes the theme based on localStorage or system preference
      */
@@ -174,6 +196,117 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Start the typewriter effect
         typeWriter();
+    }
+    
+    /**
+     * Initializes visitor information display
+     */
+    function initVisitorInfo() {
+        // Get browser and OS information
+        const browserInfo = detectBrowser();
+        browserElement.textContent = browserInfo.browser + ' ' + browserInfo.version;
+        osElement.textContent = browserInfo.os;
+        
+        // Update the clock immediately
+        updateClock();
+        
+        // Fetch IP and location information
+        fetchIPInfo();
+    }
+    
+    /**
+     * Detects browser and OS information
+     * @returns {Object} Browser and OS information
+     */
+    function detectBrowser() {
+        const userAgent = navigator.userAgent;
+        let browser = "Unknown";
+        let version = "Unknown";
+        let os = "Unknown";
+        
+        // Detect browser and version
+        if (userAgent.indexOf("Firefox") > -1) {
+            browser = "Firefox";
+            version = userAgent.match(/Firefox\/([0-9.]+)/)[1];
+        } else if (userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Edg") === -1 && userAgent.indexOf("OPR") === -1) {
+            browser = "Chrome";
+            version = userAgent.match(/Chrome\/([0-9.]+)/)[1];
+        } else if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") === -1) {
+            browser = "Safari";
+            version = userAgent.match(/Version\/([0-9.]+)/)[1];
+        } else if (userAgent.indexOf("Edg") > -1) {
+            browser = "Edge";
+            version = userAgent.match(/Edg\/([0-9.]+)/)[1];
+        } else if (userAgent.indexOf("OPR") > -1) {
+            browser = "Opera";
+            version = userAgent.match(/OPR\/([0-9.]+)/)[1];
+        } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+            browser = "Internet Explorer";
+            version = userAgent.match(/(?:MSIE |rv:)([0-9.]+)/)[1];
+        }
+        
+        // Detect OS
+        if (userAgent.indexOf("Windows") > -1) {
+            os = "Windows";
+            if (userAgent.indexOf("Windows NT 10.0") > -1) os += " 10";
+            else if (userAgent.indexOf("Windows NT 6.3") > -1) os += " 8.1";
+            else if (userAgent.indexOf("Windows NT 6.2") > -1) os += " 8";
+            else if (userAgent.indexOf("Windows NT 6.1") > -1) os += " 7";
+        } else if (userAgent.indexOf("Mac") > -1) {
+            os = "macOS";
+        } else if (userAgent.indexOf("Android") > -1) {
+            os = "Android";
+        } else if (userAgent.indexOf("Linux") > -1) {
+            os = "Linux";
+        } else if (userAgent.indexOf("iOS") > -1 || userAgent.indexOf("iPhone") > -1 || userAgent.indexOf("iPad") > -1) {
+            os = "iOS";
+        }
+        
+        return { browser, version, os };
+    }
+    
+    /**
+     * Fetches IP and location information
+     */
+    function fetchIPInfo() {
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                ipAddressElement.textContent = data.ip || 'Unknown';
+                
+                // Format location as City, Country (if available)
+                let locationText = '';
+                if (data.city) locationText += data.city;
+                if (data.country_name) {
+                    if (locationText) locationText += ', ';
+                    locationText += data.country_name;
+                }
+                
+                locationElement.textContent = locationText || 'Unknown';
+            })
+            .catch(error => {
+                console.error('Error fetching IP info:', error);
+                ipAddressElement.textContent = 'Error fetching';
+                locationElement.textContent = 'Error fetching';
+            });
+    }
+    
+    /**
+     * Updates the clock with current time
+     */
+    function updateClock() {
+        const now = new Date();
+        const options = { 
+            weekday: 'short', 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        currentTimeElement.textContent = now.toLocaleString(undefined, options);
     }
     
     /**
@@ -360,6 +493,40 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             copyStatus.style.opacity = 0;
         }, 2000);
+    }
+    
+    /**
+     * Handles embedding options from URL parameters
+     * @param {URLSearchParams} params - The URL parameters
+     */
+    function handleEmbeddingOptions(params) {
+        // Handle theme parameter
+        if (params.has('theme')) {
+            const theme = params.get('theme');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark');
+            } else if (theme === 'light') {
+                document.body.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Handle hiding visitor info
+        if (params.has('hideVisitorInfo') && params.get('hideVisitorInfo') === 'true') {
+            const visitorInfoElement = document.querySelector('.visitor-info');
+            if (visitorInfoElement) {
+                visitorInfoElement.style.display = 'none';
+            }
+        }
+        
+        // Handle hiding footer
+        if (params.has('hideFooter') && params.get('hideFooter') === 'true') {
+            const footerElement = document.querySelector('.retro-footer');
+            if (footerElement) {
+                footerElement.style.display = 'none';
+            }
+        }
     }
     
     // Initialize with a default prompt

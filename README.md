@@ -13,6 +13,8 @@ A web-based tool for generating prompts to create realistic images of Malay wome
 - Automatic copy of positive prompt to clipboard
 - Dark/light theme toggle with system preference detection
 - Retro typewriter effect in the footer
+- Visitor information display (IP, location, browser, OS, time)
+- Easy embedding in other websites with customization options
 - Clean, responsive user interface
 
 ## Usage
@@ -30,6 +32,147 @@ A web-based tool for generating prompts to create realistic images of Malay wome
 6. Alternatively, click "Random Prompt" to automatically generate a unique, non-repetitive prompt with additional random elements
 7. The positive prompt is automatically copied to your clipboard
 8. A confirmation message will appear when the prompt is copied
+9. View your visitor information at the bottom of the page (IP address, location, browser details, and current time)
+
+## Embedding in Other Websites
+
+You can easily embed this prompt generator into your own website using one of the following methods:
+
+### Method 1: Using the Embedding Script (Recommended)
+
+The simplest and most flexible way to embed the generator is using our embedding script:
+
+1. Include the embedding script in your HTML:
+
+```html
+<script src="path-to-generator/embed.js"></script>
+```
+
+2. Create a container element and call the embedding function:
+
+```html
+<div id="generator-container"></div>
+
+<script>
+  // Basic embedding with default options
+  embedPromptGenerator('#generator-container');
+</script>
+```
+
+3. Customize the embedding with options:
+
+```javascript
+embedPromptGenerator('#generator-container', {
+  width: '100%',
+  height: '700px',
+  theme: 'dark', // 'light', 'dark', or 'auto'
+  showVisitorInfo: false,
+  showFooter: true,
+  borderRadius: '15px',
+  boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
+});
+```
+
+See `embed-example.html` for a complete working example with different configurations.
+
+### Method 2: Iframe Embedding
+
+You can also use a simple iframe:
+
+```html
+<iframe 
+  src="https://your-domain.com/path-to-generator/index.html" 
+  width="100%" 
+  height="800px" 
+  style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
+  title="Malay Lady Prompt Generator">
+</iframe>
+```
+
+Adjust the width, height, and styling as needed to fit your website's design.
+
+### Method 3: Full Integration
+
+For more control and better integration with your website, you can include all the necessary files:
+
+1. Copy the following files to your website:
+   - `index.html`
+   - `styles.css`
+   - `script.js`
+
+2. Include the generator in a specific div on your page:
+
+```html
+<div id="prompt-generator-container"></div>
+
+<script>
+  // Load the generator into the container
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('prompt-generator-container');
+    
+    // Load HTML content
+    fetch('path-to-generator/index.html')
+      .then(response => response.text())
+      .then(html => {
+        // Extract the main container content
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const generatorContent = doc.querySelector('.container').outerHTML;
+        
+        // Insert into your page
+        container.innerHTML = generatorContent;
+        
+        // Load the script
+        const script = document.createElement('script');
+        script.src = 'path-to-generator/script.js';
+        document.body.appendChild(script);
+      });
+  });
+</script>
+```
+
+3. Add the CSS to your page:
+
+```html
+<link rel="stylesheet" href="path-to-generator/styles.css">
+```
+
+### Method 4: WordPress Integration
+
+To embed the generator in WordPress:
+
+1. Upload all files to your WordPress site (e.g., in a subdirectory like `/wp-content/uploads/prompt-generator/`)
+
+2. Create a new page and use the Custom HTML block with the iframe code:
+
+```html
+<iframe 
+  src="/wp-content/uploads/prompt-generator/index.html" 
+  width="100%" 
+  height="800px" 
+  style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
+  title="Malay Lady Prompt Generator">
+</iframe>
+```
+
+3. Alternatively, create a custom shortcode in your theme's functions.php:
+
+```php
+function prompt_generator_shortcode() {
+    return '<div class="prompt-generator-wrapper">
+              <iframe 
+                src="/wp-content/uploads/prompt-generator/index.html" 
+                width="100%" 
+                height="800px" 
+                style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
+                title="Malay Lady Prompt Generator">
+              </iframe>
+            </div>';
+}
+add_shortcode('prompt_generator', 'prompt_generator_shortcode');
+```
+
+Then use the shortcode `[prompt_generator]` in any page or post.
 
 ## Advanced Randomization
 
