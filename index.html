@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malay Lady Prompt Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle">
+            <span class="light-icon">☀️</span>
+            <span class="dark-icon">🌙</span>
+        </button>
+    </div>
+    
+    <div class="container">
+        <h1>Malay Lady Prompt Generator</h1>
+        <p class="description">Generate prompts for creating realistic images using JuggernautXL_JuggXILightningByRD checkpoint</p>
+        
+        <div class="form-container">
+            <div class="form-section">
+                <h3>Positive Attributes</h3>
+                <div class="form-group">
+                    <label for="age">Age (30-40):</label>
+                    <input type="number" id="age" min="30" max="40" value="35">
+                </div>
+                
+                <div class="form-group">
+                    <label for="hairStyle">Hair Style:</label>
+                    <input type="text" id="hairStyle" placeholder="e.g., long wavy hair">
+                </div>
+                
+                <div class="form-group">
+                    <label for="outfit">Outfit:</label>
+                    <input type="text" id="outfit" placeholder="e.g., traditional Malay dress">
+                </div>
+                
+                <div class="form-group">
+                    <label for="background">Background:</label>
+                    <input type="text" id="background" placeholder="e.g., tropical beach">
+                </div>
+                
+                <div class="form-group">
+                    <label for="cameraLens">Camera Lens:</label>
+                    <select id="cameraLens">
+                        <option value="85mm portrait lens, shallow depth of field">85mm Portrait Lens (Default)</option>
+                        <option value="35mm wide angle lens">35mm Wide Angle Lens</option>
+                        <option value="50mm standard lens">50mm Standard Lens</option>
+                        <option value="135mm telephoto lens">135mm Telephoto Lens</option>
+                        <option value="24mm wide angle lens">24mm Wide Angle Lens</option>
+                        <option value="70-200mm zoom lens">70-200mm Zoom Lens</option>
+                        <option value="macro lens">Macro Lens</option>
+                        <option value="fisheye lens">Fisheye Lens</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Negative Prompt</h3>
+                <div class="form-group">
+                    <label for="negativePrompt">Words to avoid:</label>
+                    <textarea id="negativePrompt" placeholder="e.g., unrealistic proportions, cartoon, anime, illustration, CGI, Unreal, Airbrushed, Digital, fused fingers"></textarea>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button id="generateBtn">Generate Prompt</button>
+                <button id="randomBtn" class="random-btn">Random Prompt</button>
+            </div>
+        </div>
+        
+        <div class="result-container">
+            <div class="result-section">
+                <h2>Generated Prompt:</h2>
+                <div id="promptResult" class="prompt-box"></div>
+            </div>
+            
+            <div class="result-section">
+                <h2>Negative Prompt:</h2>
+                <div id="negativeResult" class="prompt-box"></div>
+            </div>
+            
+            <div class="copy-status" id="copyStatus"></div>
+        </div>
+    </div>
+    
+    <footer class="retro-footer">
+        <div class="typewriter-text" id="copyrightText"></div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

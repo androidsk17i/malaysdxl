@@ -1,0 +1,321 @@
+/* Global Styles */
+:root {
+    --bg-color: #f5f5f5;
+    --container-bg: #fff;
+    --text-color: #333;
+    --heading-color: #2c3e50;
+    --subheading-color: #7f8c8d;
+    --border-color: #ddd;
+    --form-bg: #f9f9f9;
+    --button-primary: #3498db;
+    --button-primary-hover: #2980b9;
+    --button-secondary: #9b59b6;
+    --button-secondary-hover: #8e44ad;
+    --success-color: #27ae60;
+    --highlight-color: #e8f7f0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme {
+    --bg-color: #1a1a1a;
+    --container-bg: #2c2c2c;
+    --text-color: #e0e0e0;
+    --heading-color: #ecf0f1;
+    --subheading-color: #bdc3c7;
+    --border-color: #444;
+    --form-bg: #383838;
+    --button-primary: #2980b9;
+    --button-primary-hover: #3498db;
+    --button-secondary: #8e44ad;
+    --button-secondary-hover: #9b59b6;
+    --success-color: #2ecc71;
+    --highlight-color: #2c3e50;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--container-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--shadow-color);
+    padding: 30px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1 {
+    text-align: center;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+h3 {
+    color: var(--heading-color);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.description {
+    text-align: center;
+    color: var(--subheading-color);
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+}
+
+/* Theme Toggle */
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-toggle {
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.light-icon, .dark-icon {
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.light-icon {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.dark-icon {
+    opacity: 1;
+}
+
+.dark-theme .light-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.dark-theme .dark-icon {
+    opacity: 0;
+    transform: rotate(-180deg);
+}
+
+/* Form Styles */
+.form-container {
+    margin-bottom: 30px;
+}
+
+.form-section {
+    background-color: var(--form-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--heading-color);
+    transition: color 0.3s ease;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--button-primary);
+    outline: none;
+}
+
+button {
+    background-color: var(--button-primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    margin: 10px 0;
+}
+
+.random-btn {
+    background-color: var(--button-secondary);
+}
+
+.random-btn:hover {
+    background-color: var(--button-secondary-hover);
+}
+
+button:hover {
+    background-color: var(--button-primary-hover);
+}
+
+/* Result Styles */
+.result-container {
+    background-color: var(--form-bg);
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.result-section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--heading-color);
+    margin-bottom: 15px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.prompt-box {
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    min-height: 60px;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color);
+}
+
+.highlight {
+    background-color: var(--highlight-color);
+}
+
+.copy-status {
+    text-align: center;
+    color: var(--success-color);
+    font-weight: bold;
+    height: 24px;
+    margin-top: 10px;
+    transition: opacity 0.5s ease, color 0.3s ease;
+}
+
+/* Retro Footer */
+.retro-footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 0.15em solid var(--heading-color);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--heading-color) }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    
+    button {
+        width: 100%;
+    }
+    
+    .theme-toggle-container {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .typewriter-text {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+    }
+} 
