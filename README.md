@@ -2,6 +2,10 @@
 
 A web-based tool for generating prompts to create realistic images of Malay women using the JuggernautXL_JuggXILightningByRD checkpoint.
 
+## Live Demo
+
+The generator is live and available at: [https://androidsk17i.github.io/malaysdxl/](https://androidsk17i.github.io/malaysdxl/)
+
 ## Features
 
 - Input form for customizing age, hair style, outfit, and background
@@ -19,7 +23,7 @@ A web-based tool for generating prompts to create realistic images of Malay wome
 
 ## Usage
 
-1. Open `index.html` in any modern web browser
+1. Open `index.html` in any modern web browser or visit [https://androidsk17i.github.io/malaysdxl/](https://androidsk17i.github.io/malaysdxl/)
 2. Toggle between dark and light themes using the sun/moon button in the top-right corner
 3. Fill in the form fields with your desired attributes:
    - Age (30-40)
@@ -45,7 +49,7 @@ The simplest and most flexible way to embed the generator is using our embedding
 1. Include the embedding script in your HTML:
 
 ```html
-<script src="path-to-generator/embed.js"></script>
+<script src="https://androidsk17i.github.io/malaysdxl/embed.js"></script>
 ```
 
 2. Create a container element and call the embedding function:
@@ -77,11 +81,11 @@ See `embed-example.html` for a complete working example with different configura
 
 ### Method 2: Iframe Embedding
 
-You can also use a simple iframe:
+You can also use a simple iframe pointing to the live version:
 
 ```html
 <iframe 
-  src="https://your-domain.com/path-to-generator/index.html" 
+  src="https://androidsk17i.github.io/malaysdxl/" 
   width="100%" 
   height="800px" 
   style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
@@ -111,7 +115,7 @@ For more control and better integration with your website, you can include all t
     const container = document.getElementById('prompt-generator-container');
     
     // Load HTML content
-    fetch('path-to-generator/index.html')
+    fetch('https://androidsk17i.github.io/malaysdxl/index.html')
       .then(response => response.text())
       .then(html => {
         // Extract the main container content
@@ -124,7 +128,7 @@ For more control and better integration with your website, you can include all t
         
         // Load the script
         const script = document.createElement('script');
-        script.src = 'path-to-generator/script.js';
+        script.src = 'https://androidsk17i.github.io/malaysdxl/script.js';
         document.body.appendChild(script);
       });
   });
@@ -134,20 +138,18 @@ For more control and better integration with your website, you can include all t
 3. Add the CSS to your page:
 
 ```html
-<link rel="stylesheet" href="path-to-generator/styles.css">
+<link rel="stylesheet" href="https://androidsk17i.github.io/malaysdxl/styles.css">
 ```
 
 ### Method 4: WordPress Integration
 
 To embed the generator in WordPress:
 
-1. Upload all files to your WordPress site (e.g., in a subdirectory like `/wp-content/uploads/prompt-generator/`)
-
-2. Create a new page and use the Custom HTML block with the iframe code:
+1. Create a new page and use the Custom HTML block with the iframe code:
 
 ```html
 <iframe 
-  src="/wp-content/uploads/prompt-generator/index.html" 
+  src="https://androidsk17i.github.io/malaysdxl/" 
   width="100%" 
   height="800px" 
   style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
@@ -155,13 +157,13 @@ To embed the generator in WordPress:
 </iframe>
 ```
 
-3. Alternatively, create a custom shortcode in your theme's functions.php:
+2. Alternatively, create a custom shortcode in your theme's functions.php:
 
 ```php
 function prompt_generator_shortcode() {
     return '<div class="prompt-generator-wrapper">
               <iframe 
-                src="/wp-content/uploads/prompt-generator/index.html" 
+                src="https://androidsk17i.github.io/malaysdxl/" 
                 width="100%" 
                 height="800px" 
                 style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
